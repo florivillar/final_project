@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    <title>Explora nuestro contenido - Travel Blog</title>
+{% endblock titulo %}
+
+{% block contenido %}
+
+<h2>¿Qué deseas ver?</h2></p>
+
+<h3>Artículos</h3>
+<p>Antes de emprender cualquier viaje, es crucial estar bien informado y preparado. Esto incluye reunir la documentación necesaria, como pasaportes y visas, y conocer los requisitos de salud y seguridad en el destino. Además, la planificación del itinerario, la investigación sobre la cultura local y las costumbres son pasos esenciales.</p>
+<ul>
+    {% for articulo in articulos %}
+        <li><a href="{% url 'lista_articulos' %}">Haz clic para conocer más sobre {{ articulo.titulo }}</a></li>
+    {% endfor %}
+</ul>
+
+<h3>Destinos</h3>
+<p>Cada lugar tiene su propia identidad única, con atracciones que van desde paisajes impresionantes y monumentos históricos hasta experiencias culinarias inolvidables.</p>
+<ul>
+    {% for destino in destinos %}
+        <li><a href="{% url 'lista_destinos' %}">Haz clic para conocer más sobre {{ destino.nombre }}</a></li>
+    {% endfor %}
+</ul>
+
+<h3>Hospedajes</h3>
+<p>En el mundo diverso de las opciones de hospedaje, los viajeros podemos elegir desde lujosos resorts frente al mar o en el corazón de la ciudad, hasta experiencias únicas en la naturaleza. Sea cual sea la elección, el hospedaje se convierte en parte integral de la narrativa del viaje.</p>
+<ul>
+    {% for hospedaje in hospedajes %}
+        <li><a href="{% url 'lista_hospedajes' %}">Haz clic para conocer más sobre {{ hospedaje.nombre }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

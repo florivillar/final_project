@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    <title>Hospedajes - Travel Blog</title>
+{% endblock titulo %}
+
+{% block contenido %}
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Nombre</th>
+            <th>Destino</th>
+            <th>Descripcion</th>
+            <th>Imagen</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for hospedaje in hospedajes %}
+        <tr>
+            <td>{{ hospedaje.nombre }}</td>
+            <td>{{ hospedaje.descripcion }}</td>
+            <td>{{ hospedaje.destino }}</td>
+            <td><img src="{{ hospedaje.imagen.url }}" alt="{{ hospedaje.nombre }}" style="max-width: 500px; height: auto;"></td>
+            <td>
+              {% if user == hospedaje.creador %}
+              <a class="btn btn-link" href="{% url 'editar_hospedaje' pk=hospedaje.pk %}">editar</a>
+              {% endif %}
+            </td>
+            <td>
+              {% if user == hospedaje.creador %}
+              <form action="{% url 'eliminar_hospedaje' hospedaje.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-link" value="eliminar"/>
+              </form>
+              {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock contenido %} 

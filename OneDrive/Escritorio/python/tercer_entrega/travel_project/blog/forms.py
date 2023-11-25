@@ -1,18 +1,35 @@
 from django import forms
-from .models import Post, Destino, Comunidad
 
-class PostForm(forms.ModelForm):
+from .models import Articulo, Destino, Hospedaje
+
+
+class ArticuloForm(forms.ModelForm):
+
     class Meta:
-        model = Post
-        fields = '__all__'
+        model = Articulo
+
+        fields = ['titulo', 'subtitulo', 'contenido', 'autor']
+
 
 class DestinoForm(forms.ModelForm):
-    class Meta:
-        model = Destino
-        fields = '__all__'
 
-class ComunidadForm(forms.ModelForm):
     class Meta:
-        model = Comunidad
-        fields = '__all__'
+
+        model = Destino
+
+        fields = ['nombre', 'descripcion', 'imagen']
+
+
+class HospedajeForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Hospedaje
+
+        fields = ['nombre', 'destino', 'descripcion', 'imagen']
+
+
+class SearchForm(forms.Form):
+
+    query = forms.CharField(max_length=100, required=False, label='')
 

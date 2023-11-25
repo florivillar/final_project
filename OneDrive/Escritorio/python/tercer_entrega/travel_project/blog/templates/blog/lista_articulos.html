@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    <title>Articulos - Travel Blog</title>
+{% endblock titulo %}
+
+{% block contenido %}
+    
+<table class="table">
+  <tbody>
+    <tr>
+           <th>Titulo</th>
+           <th>Subtitulo</th>
+           <th>Contenido</th>
+           <th>Autor</th>
+           <th>Fecha de publicación</th>
+       </tr>
+       {% for articulo in articulos %}
+       <tr>
+           <td>{{ articulo.titulo }}</td>
+           <td>{{ articulo.subtitulo }}</td>
+           <td>{{ articulo.contenido }}</td>
+           <td>{{ articulo.autor }}</td>
+           <td>{{ articulo.fecha_publicacion }}</td>
+           </td>
+           <td>
+             {% if user == articulo.creador %}
+             <a class="btn btn-link" href="{% url 'editar_articulo' pk=articulo.pk %}">editar</a>
+             <form action="{% url 'eliminar_articulo' articulo.id %}" method="articulo">
+               {% csrf_token %}
+               <input type="submit" class="btn btn-link" value="eliminar"/>
+             </form>
+             {% endif %}
+           </td>
+       </tr>
+       {% endfor %}
+       <p></p>
+  </tbody>
+</table>
+
+{% endblock contenido %}

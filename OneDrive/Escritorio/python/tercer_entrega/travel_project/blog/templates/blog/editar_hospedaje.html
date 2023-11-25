@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+   <title>Editar Hospedaje - Travel Blog</title>
+{% endblock titulo %}
+
+{% block contenido %}
+   <h1>Editar Hospedaje</h1>
+   <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    <button type="submit">Guardar cambios</button>
+   </form>
+   <a href="{% url 'lista_hospedajes' %}">Volver a la lista</a>
+{% endblock contenido %}

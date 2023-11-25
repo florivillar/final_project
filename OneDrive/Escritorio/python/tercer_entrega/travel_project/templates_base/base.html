@@ -24,14 +24,33 @@
         <!-- Navigation (header)-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
-                <a class="navbar-brand" href="{% url 'lista_posts' %}">Posts</a>
-                <a class="navbar-brand" href="{% url 'crear_post' %}">Post</a>
-                <a class="navbar-brand" href="{% url 'lista_destinos' %}">Destinos</a>
-                <a class="navbar-brand" href="{% url 'crear_destino' %}">Destino</a>
-                <a class="navbar-brand" href="{% url 'lista_comunidades' %}">Comunidades</a>
-                <a class="navbar-brand" href="{% url 'crear_comunidad' %}">Comunidad</a>
-                <a class="btn btn-primary" href="#signup">INICIAR</a>
+                <a class="navbar-brand" href="{% url 'home' %}">Inicio</a>
+                <a class="navbar-brand" href="{% url 'pages' %}">Explorar</a>
+                <a class="navbar-brand" href="{% url 'about' %}">Acerca de mi</a>
+                {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div style="display: inline-flex;">
+                            <img src="{{user.avatar.imagen.url}}" style="max-width:40px;margin-right: 10px;">
+                            <span>{{ user.username }}</span>
+                        </div>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'profile' %}">Editar mis datos</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'agregar_avatar' %}">Agregar avatar</a>
+                        </li>                            
+                        <li>
+                            <a class="dropdown-item" href="{% url 'logout' %}"><strong>Cerrar Sesión</strong></a>
+                        </li>
+                    </ul>
+                </div>
+                {% else %}
+                <a class="btn btn-dark" href="{% url 'login' %}">Inicio sesión</a>
+                <a class="btn btn-dark" href="{% url 'sign_up' %}">Registro</a>
+                {% endif %}
             </div>
         </nav>
 
@@ -46,9 +65,9 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">Ayuda</a></li>
+                            <li class="list-inline-item"><a href="{% url 'search_results' %}">Buscar</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contacto</a></li>
+                            <li class="list-inline-item"><a href="{% url 'contacto' %}">Contacto</a></li>
                       
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; TRAVEL BLOG.</p>
@@ -56,13 +75,10 @@
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item me-4">
-                                <a href="https://www.facebook.com/Coderhouse/"><i class="bi-facebook fs-3"></i></a>
+                                <a href="https://www.linkedin.com/in/fvillarcorbo"><i class="bi-linkedin fs-3"></i></a>
                             </li>
                             <li class="list-inline-item me-4">
-                                <a href="https://twitter.com/coderhouse"><i class="bi-twitter fs-3"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="https://www.instagram.com/coderhouse"><i class="bi-instagram fs-3"></i></a>
+                                <a href="https://www.instagram.com/florivillar"><i class="bi-instagram fs-3"></i></a>
                             </li>
                         </ul>
                     </div>

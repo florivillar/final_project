@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    <title>{{ articulo.titulo }} - Travel Blog</title>
+{% endblock titulo %}
+
+{% block contenido %}
+    <h1>{{ articulo.titulo }}</h1>
+    <p>{{ articulo.subtitulo }}</p>
+    <p>{{ articulo.contenido }}</p>
+    <p>{{ articulo.autor }}</p>
+    <p>Fecha de publicación: {{ articulo.fecha_publicacion }}</p>
+
+
+    <a href="{% url 'lista_articulos' %}">Volver a la lista de articulos</a>
+{% endblock contenido %}
