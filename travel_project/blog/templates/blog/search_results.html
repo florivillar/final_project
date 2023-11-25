@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    <title>Resultados de Búsqueda - Travel Blog</title>
+{% endblock titulo %}
+
+{% block contenido %}
+    <h2>Buscar algo...</h2>
+    <form method="get" action="{% url 'search_results' %}" style="display: flex; align-items: center;">
+        {{ form.as_p }}                   
+        <button type="submit" style="margin-top: -16px; margin-left: 10px;">Buscar</button></p>
+    </form>
+
+    <h2>Resultados de la búsqueda</h2></p>
+    {% if query %}
+        <p>Resultados para la consulta: "{{ query }}"</p>
+    {% endif %}
+
+    <h3>Articulos:</h3>
+    <ul>
+        {% for articulo in results.articulos %}
+            <li><a href="{% url 'articulo_detail' articulo.pk %}">{{ articulo.titulo }}</a></li>
+        {% empty %}
+            <li>No se encontraron resultados de articulos.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Destinos:</h3>
+    <ul>
+        {% for destino in results.destinos %}
+            <li><a href="{% url 'destino_detail' destino.pk %}">{{ destino.nombre }}</a></li>
+        {% empty %}
+            <li>No se encontraron resultados de destinos.</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Hospedajes:</h3>
+    <ul>
+        {% for hospedaje in results.hospedajes %}
+            <li><a href="{% url 'hospedaje_detail' hospedaje.pk %}">{{ hospedaje.nombre }}</a></li>
+        {% empty %}
+            <li>No se encontraron resultados de hospedajes.</li>
+        {% endfor %}
+    </ul>
+</block>
+{% endblock %}
+

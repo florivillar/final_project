@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    <title>{{ destino.nombre }} - Travel Blog</title>
+{% endblock titulo %}
+
+{% block contenido %}
+    <h1>{{ destino.nombre }}</h1>
+    <p>{{ destino.descripcion }}
+    <p><img src="{{ destino.imagen.url }}" " style="max-width: 500px; height: auto;"></p>
+
+    <a href="{% url 'lista_destinos' %}">Volver a la lista de destinos</a>
+{% endblock contenido %}
+

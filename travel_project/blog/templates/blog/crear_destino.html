@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    <title>Crear Destino - Travel Blog</title>
+{% endblock titulo %}
+
+{% block contenido %}
+    <h1>Crear un nuevo destino</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button></p>
+        <a href="{% url 'lista_destinos' %}">Volver a la lista</a>
+    </form>
+{% endblock contenido %}

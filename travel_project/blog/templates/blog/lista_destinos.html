@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    <title>Destinos - Travel Blog</title>
+{% endblock titulo %}
+
+{% block contenido %}
+    <h1>Lista de destinos</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
+
+<table class="table">
+<tbody>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Imagen</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for destino in destinos %}
+        <tr>
+            <td>{{ destino.nombre }}</td>
+            <td>{{ destino.descripcion }}</td>
+            <td><img src="{{ destino.imagen.url }}" alt="{{ destino.nombre }}" style="max-width: 500px; height: auto;"></td>
+            <td>
+                {% if user == destino.creador %}
+                <a class="btn btn-link" href="{% url 'editar_destino' pk=destino.pk %}">editar</a>
+                {% endif %}
+            </td>
+            <td>
+                {% if user == destino.creador %}
+                <form action="{% url 'eliminar_destino' destino.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-link" value="eliminar"/>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock contenido %}

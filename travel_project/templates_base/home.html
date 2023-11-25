@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+    <h1>Bienvenido a TRAVEL BLOG</h1>
+    <h1>{{ user.first_name }}</h1>
+    <p>Comparte tus aventuras.</p>
+    <img src="{{ user.avatar.imagen.url }}" style="max-width: 200px;"></p>
+    
+    <!-- Otro contenido que desees agregar -->
+    {% if user.is_authenticated %}
+    <a href="{% url 'crear_articulo' %}">Crear un articulo</a></p>
+    <a href="{% url 'crear_destino' %}">Crear un destino</a></p>
+    <a href="{% url 'crear_hospedaje' %}">Crear un hospedaje</a></p>
+    {% endif %}
+{% endblock contenido %}
